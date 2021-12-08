@@ -5,7 +5,7 @@ Scrapes, processes, and merges SSURGO soil shapefiles with farmland classificati
 
 This is the most time-consuming part of the process. Because the Web Soil Survey operates in a dynamic .aspx environment, typical R scraping methods (e.g., Rvest package) don't work. So the first step consists of visting the [web page](https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx) and selecting the "Download Soils Data" tab. Within this dynamic page, select the desired state (in this example, Minnesota). Then scroll down to the "Soil Survey Area (SSURGO) Download Links" section and copy the entire box, from the name to the download link text, for all counties. Then paste this in an excel document. Delete the columns between the fips code and the download link. You won't need them. The resulting data should have three columns: county name, county fips code, and download link.
 
-Next, name the file "soil_zip_county_ST" (ST = two-letter state abbreviation). Upload this .xlsx file to an RStudio session.
+Next, name the file "soil_zip_county_*ST*" (*ST* = two-letter state abbreviation). Upload this .xlsx file to an RStudio session.
 
 ## Step 2: Download and process mapunit tabular data
 
