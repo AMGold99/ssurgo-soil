@@ -3,7 +3,7 @@ Scrapes, processes, and merges SSURGO soil shapefiles with farmland classificati
 
 Total time required: ~4 hrs
 
-![Soil Data workflow map](https://github.com/[AMGold99]/[ssurgo-soil]/blob/[main]/soildataworkflow.png?raw=true)
+![Soil Data workflow map](soildataworkflow.png)
 
 ## Step 1: Manually create state zip dataset
 
