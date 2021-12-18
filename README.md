@@ -3,6 +3,8 @@ Scrapes, processes, and merges SSURGO soil shapefiles with farmland classificati
 
 Total time required: ~4 hrs
 
+![Soil Data workflow map](https://github.com/[AMGold99]/[ssurgo-soil]/blob/[main]/soildataworkflow.png?raw=true)
+
 ## Step 1: Manually create state zip dataset
 
 This is the most time-consuming part of the process. Because the Web Soil Survey operates in a dynamic .aspx environment, typical R scraping methods (e.g., Rvest package) don't work. So the first step consists of visiting the [web page](https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx) and selecting the "Download Soils Data" tab. Within this dynamic page, select the desired state (in this example, Minnesota). Then scroll down to the "Soil Survey Area (SSURGO) Download Links" section and copy the entire box, from the name to the download link text, for all counties. Then paste this in an excel document. **Delete the columns between the fips code and the download text.** You won't need them. The resulting data should have three columns: county name, county fips code, and download link.
