@@ -3,7 +3,7 @@
 #Date: 12/2/2021
 
 
-#create df of all geo files (dbf, prj, shp, shx) for all counties
+#create df of all geo file names (dbf, prj, shp, shx) for all counties
 file_grid <- expand.grid(
   start = "soilmu_a_",
   fips = tolower(soil_zip$fips),
