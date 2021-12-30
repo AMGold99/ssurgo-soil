@@ -1,4 +1,7 @@
 # ssurgo-soil
+
+**NB: This project is currently in development. The code in this repository only processes one state (i.e., the user must manually set a new state each time). The final version will allow the user to process all states automatically, with minimal manual input required.**
+
 Scrapes, processes, and merges SSURGO soil shapefiles with farmland classification tabular data and uploads them to a specified Google Drive folder.
 
 Total time required: ~4 hrs
