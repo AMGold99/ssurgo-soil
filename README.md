@@ -61,7 +61,7 @@ In the process, the for loop calls three functions:
 ## Further Information
 
 ### What does "mapunit" mean and why is it important?
-Mapunits are the most basic units of soil surveys. Functionally, they are polygons representing an area that contains more or less the same kind of soil. In each SSURGO dataset, tables called "mapunit" contain, among other metrics, [farmland classifications](https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/pr/soils/?cid=nrcs141p2_037285) compiled by the NRCS. Our project uses these classifications as an input feature in our Ricardian land value models. 
+Mapunits are the most basic units of soil surveys. Functionally, they are polygons representing an area that contains more or less the same kind of soil. In each SSURGO dataset, tables called "mapunit" contain, among other metrics, [farmland classifications](https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/pr/soils/?cid=nrcs141p2_037285) compiled by the NRCS. Each mapunit code has been assigned a farmland classification, indicating its suitability for agricultural use. Our project uses these classifications as an input feature in our Ricardian land value models. 
 
 
 ### Helpful links
