@@ -1,54 +1,86 @@
 # ssurgo-soil
 
-**NB: This project is currently in development. The code in this repository only processes one state (i.e., the user must manually set a new state each time). The final version will allow the user to process all states automatically, with minimal manual input required. Python code for automated importation into ArcGIS Pro will be added to this repository in February 2022**
+Retrieves and merges SSURGO soil shapefiles with farmland classification tabular data, then uploads them to a specified Google Drive folder. Once in Google Drive, use Python notebook in ArcGIS Pro project to import and merge geospatial data *(coming soon)*.
 
-Scrapes, processes, and merges SSURGO soil shapefiles with farmland classification tabular data and uploads them to a specified Google Drive folder.
-
-Total time required: ~4 hrs
 
 ![Soil Data workflow map](soildataworkflow.png)
 
-## Step 1: Manually create state zip dataset
+## Preliminary Set-Up
 
-This is the most time-consuming part of the process. Because the Web Soil Survey operates in a dynamic .aspx environment, typical R scraping methods (e.g., Rvest package) don't work. So the first step consists of visiting the [web page](https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx) and selecting the "Download Soils Data" tab. Within this dynamic page, select the desired state (in this example, Minnesota). Then scroll down to the "Soil Survey Area (SSURGO) Download Links" section and copy the entire box, from the name to the download link text, for all counties. Then paste this in an excel document. **Delete the columns between the fips code and the download text.** You won't need them. The resulting data should have three columns: county name, county fips code, and download link.
-
-Next, name the file "soil_zip_county_*ST*" (*ST* = two-letter state abbreviation). Upload this .xlsx file to an RStudio session.
-
-## Step 2: Download and process mapunit tabular data
-
-In each SSURGO dataset, tables called "mapunit" contain, among other metrics, [farmland classifications](https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/pr/soils/?cid=nrcs141p2_037285) compiled by the NRCS. The code in **mapunit_download.R** scrapes the entire SSURGO zip file from the Web Soil Survey site, then loads each county's mapunit, cleaning and processing it before depositing it in a local R folder called "mapunit" (folder names and locations may be changed but must be reconciled with the source code). 
-
-To run the code successfully, ensure your excel file(s) are properly named before sourcing the script. 
-
-Runtime: ~1 hr
-
-## Step 3: Download geospatial files
-
-Each SSURGO dataset contains spatial directories containing shapefiles and their support scripts. **spatial_download.R** scrapes the entire SSURGO zip file from the Web Soil Survey site, then loads each county's spatial directory into a directory. The script below shows how to quickly create such directories in your local R file system (in the source code, it is nullified with #'s to ensure it does not run and overwrite existing shapefile directories). Note: "Land_Use_Rights" was our team directory in RStudio Work Bench.
+### Specify Directories, Authorize Google Account
+The **soil_execute.R** file (in the **code** directory) contains everything needed to execute the entire project (from Alabama to Wyoming). Before running, carefully examine the global variables and ensure all directory names match their names in your current R session (they should be ready as-is, but if you happen to change any file names, you must update them here to avoid errors). You will also specify your Google account and target Drive directory here.
 
 ```r
-#create county directories to fill with spatial files [ONLY RUN ONCE]
-create_path <- file.path(getwd(),"Land_Use_Rights","spatial_soil")
-for(i in 1:nrow(soil_zip)) {
-    c_file <- as.character(soil_zip[i,2])
-    path <- file.path(create_path,c_file)
-    dir.create(path,showWarnings = TRUE) 
-}
+#---------------SET GLOBAL VARIABLES----------------#
+
+
+#----DIRECTORIES----#
+
+#main directory
+main_dir <- "soil_project"
+
+#soil excel zip reference directory
+zip_dir <- "state_zip"
+
+#mapunit repository directory
+mapunit_dir <- "mapunit"
+
+#spatial repository directory
+spatial_dir <- "spatial_soil"
+
+#code directory
+code_dir <- "code"
+
+#etc., etc.
+```
+### Prep Download Links
+
+After a few basic checks to ensure the file system is ready to receive the downloaded data, the code will create a vector called **all_states_excel** containing the name of each state's excel file, which contains the download link to every county's zipped soil data folder. The excel files themselves are stored in the **zip_dir**. Here are the first few entries of the vector:
+
+```r
+> head(all_states_excel)
+[1] "soil_zip_county_AL.xlsx" "soil_zip_county_AZ.xlsx"
+[3] "soil_zip_county_AR.xlsx" "soil_zip_county_CA.xlsx"
+[5] "soil_zip_county_CO.xlsx" "soil_zip_county_CT.xlsx"
 ```
 
-Runtime: 1-2 hrs
+## Execute Project Code
 
-## Step 4: Merge geospatial files with mapunit data
+The for loop downloads, merges, and uploads to Drive directory **all** states' data.
 
-Not much explanation required. Source **merge_shp.R**, which merges the files, then overwrites the old spatial files with the merged shapefile (now containing farmland classification).
+Do not run until ensuring there is sufficient space in your R session (~3000 counties' worth of data takes up a lot of memory).
 
-Runtime: ~1 hr
+In the process, the for loop calls three functions:
 
-## Step 5: Upload merged files to Google Drive
+* *download_soil()* downloads a county's entire zipped soil folder, then extracts the mapunit and spatial files, depositing them the mapunit and spatial directories, respectively
+* *merge_class()* merges the mapunit farmland classifications with the corresponding shapefile (in ArcGIS Pro, farmland classification will now show up as an attribute)
+* *upload_to_drive()* uploads each county's now-merged spatial files to the Drive space specified above.
 
-When you source **soil_drive.R**, it will likely require you to authorize the connection using a gmail account that has access to whatever you've set as "NEW_soil_dir." It will then upload all merged shapefiles (and support files) to the specified Google Drive directory.
 
-Runtime: ~30 mins
 
-Now you are ready to load the shapefiles into ArcGIS Pro.
+## Further Information
+
+### What does "mapunit" mean and why is it important?
+Mapunits are the most basic units of soil surveys. Functionally, they are polygons representing an area that contains more or less the same kind of soil. In each SSURGO dataset, tables called "mapunit" contain, among other metrics, [farmland classifications](https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/pr/soils/?cid=nrcs141p2_037285) compiled by the NRCS. Our project uses these classifications as an input feature in our Ricardian land value models. 
+
+
+### Helpful links
+
+* More on [SSURGO](https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627)
+* Several non-base R packages were used in this project. 
+    * [googledrive](https://googledrive.tidyverse.org/)
+    * [stringr](https://stringr.tidyverse.org/)
+    * [utils](https://cran.r-project.org/web/packages/R.utils/index.html)
+    * [readr](https://readr.tidyverse.org/)
+    * [dplyr](https://dplyr.tidyverse.org/)
+    * [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html)
+    * [sp](https://cran.r-project.org/web/packages/sp/index.html)
+    * If they are not fetched automatically and produce errors, install them manually:
+    
+```r
+install.packages(c("googledrive","stringr","utils","readr","dplyr","rgdal","sp"))
+```
+
+
+
 
