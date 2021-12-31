@@ -1,6 +1,6 @@
 # ssurgo-soil
 
-**NB: This project is currently in development. The code in this repository only processes one state (i.e., the user must manually set a new state each time). The final version will allow the user to process all states automatically, with minimal manual input required.**
+**NB: This project is currently in development. The code in this repository only processes one state (i.e., the user must manually set a new state each time). The final version will allow the user to process all states automatically, with minimal manual input required. Python code for automated importation into ArcGIS Pro will be added to this repository in February 2022**
 
 Scrapes, processes, and merges SSURGO soil shapefiles with farmland classification tabular data and uploads them to a specified Google Drive folder.
 
