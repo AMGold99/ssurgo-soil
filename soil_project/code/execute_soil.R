@@ -1,7 +1,7 @@
 #-------------------DESCRIPTION---------------------#
 
-#Executes soil data processing pipeline to
-#retrieve farmland classifications and soil shapefiles 
+#Executes soil data processing pipeline which
+#retrieves farmland classifications and soil shapefiles 
 #from NRCS's Web Soil Survey (SSURGO database),
 #then uploads files to google drive folder for use by ArcGIS Pro
 
