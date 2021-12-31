@@ -71,6 +71,13 @@ if (googledrive::drive_has_token()==TRUE) {
 
 #-------------------FOLDER CHECK--------------------#
 
+#check that main_dir resides in highest level of R session folder system
+if (file.exists(file.path(getwd(),main_dir))) {
+  print("main_dir is located in top level of file system. Proceed.")
+} else {
+  stop("main_dir is not located in top level of file system. Double check file location before proceeding.")
+}
+
 #check that main directory contains all relevant subfolders
 {
   dir_contents <- list.files(main_dir)
@@ -82,7 +89,7 @@ if (googledrive::drive_has_token()==TRUE) {
       print(paste0("Current names are: mapunit_dir = ",mapunit_dir,", spatial_dir = ",spatial_dir,", zip_dir = ",zip_dir,", and code_dir = ",code_dir,". Do these match the folder names in your session?"))
       stop("Main directory does not contain specified subfolders. Double check names of mapunit_dir, spatial_dir, zip_dir, and code_dir")
     }
-  }
+}
 
 #ensure spatial and map directories are empty
 {
@@ -92,7 +99,7 @@ if (googledrive::drive_has_token()==TRUE) {
   if (is_empty(mapunit_contents) &
       is_empty(spatial_contents)) {
     print("Target directories are empty. Proceed.")
-  } else {
+    } else {
       print(paste0(mapunit_dir, " contains: ",mapunit_contents))
       print(paste0(spatial_dir, " contains: ",spatial_contents))
       stop("Target directories not empty. Clear contents before proceeding")
