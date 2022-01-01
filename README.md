@@ -1,6 +1,6 @@
 # ssurgo-soil
 
-Retrieves and merges SSURGO soil shapefiles with farmland classification tabular data, then uploads them to a specified Google Drive folder. Once in Google Drive, use Python notebook in ArcGIS Pro project to import and merge geospatial data *(coming soon)*.
+Retrieves and merges SSURGO soil shapefiles with farmland classification tabular data, then uploads them to a specified Google Drive folder. Once the data has been imported to Google Drive, use Python notebook in ArcGIS Pro project to import and merge geospatial data *(coming soon)*.
 
 
 ![Soil Data workflow map](SoilDataWorkflow.svg)
