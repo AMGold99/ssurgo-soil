@@ -111,7 +111,7 @@ download_soil <- function(excel_file, mn_dir, mp_dir, sp_dir, spatial_names) {
     #delete unzipped folder
     linked_loc <- file.path(outDir,county)
     if(linked_loc == outDir | linked_loc == file.path(getwd(),mn_dir)) {
-      stop("Warning! Major directories were almost deleted. Adjust mapunit_download.R to avoid accidential deletion")
+      stop("Warning! Major directories were almost deleted. Double check download function to avoid accidential deletion")
     } else {
       unlink(linked_loc, recursive = TRUE)
     }
