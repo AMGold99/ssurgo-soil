@@ -8,7 +8,7 @@ Retrieves and merges SSURGO soil shapefiles with farmland classification tabular
 ## Preliminary Set-Up
 
 ### Specify Directories, Authorize Google Account
-The **soil_execute.R** file (in the **code** directory) contains everything needed to execute the entire project (from Alabama to Wyoming). Before running, carefully examine the global variables and ensure all directory names match their names in your current R session (they should be ready as-is, but if you happen to change any file names, you must update them here to avoid errors). You will also specify your Google account and target Drive directory here.
+Everything you will need is in the **soil_project** folder in this repository. The **soil_execute.R** file (in the **code** directory) contains everything needed to execute the entire project (from Alabama to Wyoming). Before running, carefully examine the global variables and ensure all directory names match their names in your current R session (they should be ready as-is, but if you happen to change any file names, you must update them here to avoid errors). You will also specify your Google account and target Drive directory here.
 
 ```r
 #---------------SET GLOBAL VARIABLES----------------#
