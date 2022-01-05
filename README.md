@@ -1,6 +1,6 @@
 # ssurgo-soil
 
-Retrieves and merges SSURGO soil shapefiles with farmland classification tabular data, then uploads them to a specified Google Drive folder. Once in Google Drive, use Python notebook in ArcGIS Pro project to import and merge geospatial data *(coming soon)*.
+Retrieves and merges SSURGO soil shapefiles with farmland classification tabular data, then uploads them to a specified Google Drive folder. Once the data has been imported to Google Drive, use Python notebook in ArcGIS Pro project to import and merge geospatial data *(coming soon)*.
 
 
 ![Soil Data workflow map](SoilDataWorkflow.svg)
@@ -8,7 +8,7 @@ Retrieves and merges SSURGO soil shapefiles with farmland classification tabular
 ## Preliminary Set-Up
 
 ### Specify Directories, Authorize Google Account
-The **soil_execute.R** file (in the **code** directory) contains everything needed to execute the entire project (from Alabama to Wyoming). Before running, carefully examine the global variables and ensure all directory names match their names in your current R session (they should be ready as-is, but if you happen to change any file names, you must update them here to avoid errors). You will also specify your Google account and target Drive directory here.
+Everything you will need is in the **soil_project** folder in this repository. The **soil_execute.R** file (in the **code** directory) contains everything needed to execute the entire project (from Alabama to Wyoming). Before running, carefully examine the global variables and ensure all directory names match their names in your current R session (they should be ready as-is, but if you happen to change any file names, you must update them here to avoid errors). You will also specify your Google account and target Drive directory here.
 
 ```r
 #---------------SET GLOBAL VARIABLES----------------#
@@ -52,9 +52,9 @@ Do not run until ensuring there is sufficient space in your R session (~3000 cou
 
 In the process, the for loop calls three functions:
 
-* *download_soil()* downloads a county's entire zipped soil folder, then extracts the mapunit and spatial files, depositing them the mapunit and spatial directories, respectively
-* *merge_class()* merges the mapunit farmland classifications with the corresponding shapefile (in ArcGIS Pro, farmland classification will now show up as an attribute)
-* *upload_to_drive()* uploads each county's now-merged spatial files to the Drive space specified above.
+* **download_soil()** downloads a county's entire zipped soil folder, then extracts the mapunit and spatial files, depositing them the mapunit and spatial directories, respectively
+* **merge_class()** merges the mapunit farmland classifications with the corresponding shapefile (in ArcGIS Pro, farmland classification will now show up as an attribute)
+* **upload_to_drive()** uploads each county's now-merged spatial files to the Drive space specified above.
 
 
 
