@@ -52,9 +52,9 @@ Do not run until ensuring there is sufficient space in your R session (~3000 cou
 
 In the process, the for loop calls three functions:
 
-* *download_soil()* downloads a county's entire zipped soil folder, then extracts the mapunit and spatial files, depositing them the mapunit and spatial directories, respectively
-* *merge_class()* merges the mapunit farmland classifications with the corresponding shapefile (in ArcGIS Pro, farmland classification will now show up as an attribute)
-* *upload_to_drive()* uploads each county's now-merged spatial files to the Drive space specified above.
+* **download_soil()** downloads a county's entire zipped soil folder, then extracts the mapunit and spatial files, depositing them the mapunit and spatial directories, respectively
+* **merge_class()** merges the mapunit farmland classifications with the corresponding shapefile (in ArcGIS Pro, farmland classification will now show up as an attribute)
+* **upload_to_drive()** uploads each county's now-merged spatial files to the Drive space specified above.
 
 
 
