@@ -12,7 +12,9 @@ upload_to_drive <- function(excel_file,mn_dir,sp_dir,spatial_names,target_locati
   #specify current state
   state <- as.character(
     stringr::str_sub(
-      excel_file[nrow(excel_file)/2,2],1,2
+      excel_file[ceiling(nrow(excel_file)/2),2],
+      1,
+      2
       )
     )
   
