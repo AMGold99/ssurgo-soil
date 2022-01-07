@@ -2,7 +2,7 @@
 
 #Executes soil data processing pipeline which
 #retrieves farmland classifications and soil shapefiles 
-#from NRCS's Web Soil Survey (SSURGO database),
+#from NRCS's Web Soil Survey (SSURGO database), merges them,
 #then uploads files to google drive folder for use by ArcGIS Pro
 
 #Author: Asa Gold
@@ -52,10 +52,10 @@ prefix <- "https://websoilsurvey.sc.egov.usda.gov/DSD/Download/Cache/SSA/"
 #---GOOGLE ACCOUNT AUTH----#
 
 #Specify Google email with access to target Drive directory
-drive_email <- "gold1@stolaf.edu"
+drive_email <- "email_here" #ex: gold1@stolaf.edu"
 
 #Specify link to target Google Drive directory
-gdrive_link <- "https://drive.google.com/drive/folders/1EJRUz6hechy72-F21OvN3jCvuTjdSv0z"
+gdrive_link <- "google_drive_link" #ex: https://drive.google.com/drive/folders/1EJRUz6hechy72-F21OvN3jCvuTjdSv0z"
 
 #Authorize googledrive package to access your google account
 if (googledrive::drive_has_token()==TRUE) {
