@@ -235,8 +235,8 @@ for(i in 1:length(all_states_excel)) {
   spatial_state_loc <- file.path(getwd(),main_dir,spatial_dir,state_name)
   mapunit_state_loc <- file.path(getwd(),main_dir,mapunit_dir,state_name)
   
-  unlink(spatial_state_loc,recursive=TRUE)
-  unlink(mapunit_state_loc,recursive = TRUE)
+  unlink(spatial_state_loc, recursive = TRUE)
+  unlink(mapunit_state_loc, recursive = TRUE)
   
 }
 
