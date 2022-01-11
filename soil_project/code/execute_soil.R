@@ -110,7 +110,7 @@ if (file.exists(file.path(getwd(),main_dir))) {
 #-------------PREP STATE FILE LINKS-------------------#
 
 #load df with state abbreviations, used to create name references
-state_abbr <- read_excel(file.path(main_dir,zip_dir,"state_abbr.xlsx"), 
+state_abbr <- readxl::read_excel(file.path(main_dir,zip_dir,"state_abbr.xlsx"), 
                          col_names = c('state','abbr'))
 
 
@@ -135,7 +135,7 @@ all_states_excel <- state_grid[[3]]
 for(i in 1:length(all_states_excel)) {
   
   #create df for current state with download links for each county
-  current_state <- read_excel(
+  current_state <- readxl::read_excel(
     file.path(getwd(),main_dir,zip_dir,all_states_excel[i]),
     col_names = c('county','fips','zip_address')) %>%
     drop_na() %>%
