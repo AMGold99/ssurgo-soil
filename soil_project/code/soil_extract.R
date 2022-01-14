@@ -1,12 +1,13 @@
-#Title: Soil Download Function
-#Author: Asa Gold
-#Date: 29 Dec 2021
-#Description: Downloads and extracts mapunit and spatial files
+#   Title: Soil Download Function
+#   Author: Asa Gold
+#   Date: 29 Dec 2021
+#   Description: Downloads and extracts mapunit and 
+#   spatial files
 
 #------------------SET PRELIM OPTIONS/VARS---------------------#
 
 #extend timeout option so for loop doesn't interrupt itself
-options(timeout = 500)
+options(timeout = 2000)
 
 #sets vars names for mapunit.txt (identical for every county)
 mu_vars <- c("musym",
@@ -38,6 +39,15 @@ mu_vars <- c("musym",
 #------------------------DOWNLOAD FUNCTION--------------------#
 
 download_soil <- function(excel_file, mn_dir, mp_dir, sp_dir, spatial_names) {
+  
+  # retrieve state name abbr
+  state <- as.character(
+    stringr::str_sub(
+      excel_file[ceiling(nrow(excel_file)/2),2],
+      1,
+      2
+    )
+  )
 
   for(i in 1:nrow(excel_file)) {
 
@@ -47,17 +57,15 @@ download_soil <- function(excel_file, mn_dir, mp_dir, sp_dir, spatial_names) {
     #extract current county name from download link
     county <- excel_file[i,2]
     
-    state <- stringr::str_sub(county,1,2)
-    
     #set path to where temporary download will reside
     temp_path <- file.path(getwd(),mn_dir,mp_dir,state,county)
     
     #set path to where temporary spatial 
 
     #download current county zip file into the R session
-    utils::download.file(link, 
-                     destfile = temp_path, 
-                     quiet = FALSE)
+    downloader::download(link,
+                         destfile = temp_path,
+                         quiet = FALSE)
 
     #unzip county file
     zipF <- temp_path
