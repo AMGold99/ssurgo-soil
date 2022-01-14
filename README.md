@@ -69,16 +69,18 @@ Mapunits are the most basic units of soil surveys. Functionally, they are polygo
 * More on [SSURGO](https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627)
 * Several non-base R packages were used in this project. 
     * [googledrive](https://googledrive.tidyverse.org/)
+    * [readxl](https://readxl.tidyverse.org/)
     * [stringr](https://stringr.tidyverse.org/)
     * [utils](https://cran.r-project.org/web/packages/R.utils/index.html)
     * [readr](https://readr.tidyverse.org/)
     * [dplyr](https://dplyr.tidyverse.org/)
     * [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html)
     * [sp](https://cran.r-project.org/web/packages/sp/index.html)
+    * [downloader](https://cran.r-project.org/web/packages/downloader/index.html)
     * If they are not fetched automatically and produce errors, install them manually:
     
 ```r
-install.packages(c("googledrive","stringr","utils","readr","dplyr","rgdal","sp"))
+install.packages(c("googledrive","stringr","utils","readr","dplyr","rgdal","sp","downloader"))
 ```
 
 
