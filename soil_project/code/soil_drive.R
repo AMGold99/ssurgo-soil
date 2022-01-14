@@ -1,10 +1,14 @@
-#Title: Soil Drive Upload
-#Author: Asa Gold
-#Date: 30 Dec 2021
-#Description: Uploads all completed spatial files to specified google drive
+#   Title: Soil Drive Upload
+#   Author: Asa Gold
+#   Date: 30 Dec 2021
+#   Description: Uploads all completed spatial files to 
+#   specified google drive
 
-upload_to_drive <- function(excel_file,mn_dir,sp_dir,spatial_names,target_location) {
+upload_to_drive <- function(excel_file,mn_dir,sp_dir,spatial_names,target_location,valid_email) {
   
+  #authorize googledrive connection 
+  googledrive::drive_auth(email = valid_email)
+
   #convert link to id readable by googledrive package
   gdrive_soil <- googledrive::as_id(target_location)
   
