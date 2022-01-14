@@ -1,13 +1,12 @@
 #-------------------DESCRIPTION---------------------#
 
-#Executes soil data processing pipeline which
-#retrieves farmland classifications and soil shapefiles 
-#from NRCS's Web Soil Survey (SSURGO database), merges them,
-#then uploads files to google drive folder for use by ArcGIS Pro
+#   Executes soil data processing pipeline which
+#   retrieves farmland classifications and soil shapefiles 
+#   from NRCS's Web Soil Survey (SSURGO database), merges them,
+#   then uploads files to google drive folder for use by ArcGIS Pro
 
-#Author: Asa Gold
+#   Author: Asa Gold
 
-#Date: Nov 2021 (Beta Version); Dec 2021 (Final Version)
 
 
 
@@ -232,11 +231,12 @@ for(i in 1:length(all_states_excel)) {
   )
   
   #delete current state folders (spatial and mapunit)
-  spatial_state_loc <- file.path(getwd(),main_dir,spatial_dir,state_name)
-  mapunit_state_loc <- file.path(getwd(),main_dir,mapunit_dir,state_name)
+  unlink(spatial_loc, recursive = TRUE)
+  unlink(mapunit_loc, recursive = TRUE)
   
-  unlink(spatial_state_loc, recursive = TRUE)
-  unlink(mapunit_state_loc, recursive = TRUE)
+  
+  #free up memory space
+  gc()
   
 }
 
