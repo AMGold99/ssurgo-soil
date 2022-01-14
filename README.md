@@ -48,8 +48,6 @@ After a few basic checks to ensure the file system is ready to receive the downl
 
 The for loop downloads, merges, and uploads to Drive directory **all** states' data.
 
-Do not run until ensuring there is sufficient space in your R session (~3000 counties' worth of data takes up a lot of memory).
-
 In the process, the for loop calls three functions:
 
 * **download_soil()** downloads a county's entire zipped soil folder, then extracts the mapunit and spatial files, depositing them the mapunit and spatial directories, respectively
