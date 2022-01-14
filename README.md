@@ -80,7 +80,7 @@ Mapunits are the most basic units of soil surveys. Functionally, they are polygo
     * If they are not fetched automatically and produce errors, install them manually:
     
 ```r
-install.packages(c("googledrive","stringr","utils","readr","dplyr","rgdal","sp","downloader"))
+install.packages(c("googledrive","readxl","stringr","utils","readr","dplyr","rgdal","sp","downloader"))
 ```
 
 
