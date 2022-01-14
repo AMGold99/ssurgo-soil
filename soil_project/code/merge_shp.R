@@ -1,21 +1,26 @@
-#Title: Merge Shapefiles
-#Author: Asa Gold
-#Date: 30 Dec 2021
-#Description: Merges mapunit classification data with geospatial attribute table
+#   Title: Merge Shapefiles
+#   Author: Asa Gold
+#   Date: 30 Dec 2021
+#   Description: Merges mapunit classification data with 
+#   geospatial attribute table
 
 
 merge_class <- function(excel_file, mn_dir, mp_dir, sp_dir) {
 
+  # retrieve state name abbr
+    state <- as.character(
+      stringr::str_sub(
+        excel_file[ceiling(nrow(excel_file)/2),2],
+        1,
+        2
+      )
+    )
 
   #loop through every county in current state
   for(i in 1:nrow(excel_file)) {
 
     #get current county
     county <- as.character(excel_file[i,2])
-
-    #get current state
-    state <- stringr::str_sub(county,1,2)
-
 
     #specify current county mapunit file name
     csv_name <- paste0(county, "mu.csv")
