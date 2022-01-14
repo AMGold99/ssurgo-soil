@@ -1,4 +1,5 @@
-#-------------------DESCRIPTION---------------------#
+#======================================================
+#                     DESCRIPTION
 
 #   Executes soil data processing pipeline which
 #   retrieves farmland classifications and soil shapefiles 
@@ -7,6 +8,7 @@
 
 #   Author: Asa Gold
 
+#======================================================
 
 
 
@@ -227,7 +229,8 @@ for(i in 1:length(all_states_excel)) {
     mn_dir = main_dir,
     sp_dir = spatial_dir,
     spatial_names = sp_grid,
-    target_location = gdrive_link
+    target_location = gdrive_link,
+    valid_email = drive_email
   )
   
   #delete current state folders (spatial and mapunit)
@@ -237,7 +240,7 @@ for(i in 1:length(all_states_excel)) {
   
   #free up memory space
   gc()
-  
+
 }
 
 
