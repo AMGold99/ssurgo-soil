@@ -1,4 +1,4 @@
-# draft updated 2022-01-16
+# draft updated 2022-01-18
 
 # %%
 import arcpy
@@ -15,7 +15,7 @@ map = aprx.listMaps()[0]
 # %%
 #create list of state abbreviations
 
-state_zip_location = r"C:\Users\gold1\Downloads\ssurgo-soil-main(1)\ssurgo-soil-main\soil_project\state_zip"
+state_zip_location = r"G:\Shared drives\CURI - CUR\GIS\SOIL\soil_zip_county"
 state_abbr = "state_abbr.xlsx"
 abbr_location = state_zip_location + "\\" + state_abbr
 abbr_xl = pd.read_excel(abbr_location,
