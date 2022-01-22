@@ -6,7 +6,7 @@
 #   from NRCS's Web Soil Survey (SSURGO database), merges them,
 #   then uploads files to google drive folder for use by ArcGIS Pro
 
-#   Author: Asa Gold
+#   Author: Asa M. Gold (St. Olaf College)
 
 #======================================================
 
