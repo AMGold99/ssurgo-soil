@@ -23,10 +23,10 @@ abbr_xl = pd.read_excel(abbr_location,
                        header = None)
 
 state_names = abbr_xl.iloc[:,1]
-state_names[0]
+state_names[0] # ex: AL
 
 # %%
-#load current state df
+# load current state df
 
 
 current_abbr = state_names[0]
@@ -42,12 +42,13 @@ county_list = counties_nona.iloc[:,1]
 county_list
 
 # %%
-# ignore for now; this cell loads all shpfiles into map as layers (only use if you're going to merge
+# Loads all shpfiles into map as layers (only use if you're going to merge
 # by hand, not in a Python script)
+# THIS IS WHERE REGION SPECIFICATION SHOULD HAPPEN
 main_directory = r"G:\Shared drives\CURI - CUR\GIS\SOIL\Entire_US_soil"
 
 state = current_abbr
-county_range = range(0,len(county_list))
+county_range = range(0,len(county_list)) # change county range to adhere to desired region
 
 for i in county_range:
     
@@ -57,7 +58,7 @@ for i in county_range:
     map.addDataFromPath(shp_path)
 
 # %%
-#load all current state shpfiles into gdb as feature classes
+# NOT VALID IGNORE -- load all current state shpfiles into gdb as feature classes
 state = current_abbr
 
 main_directory = r"G:\Shared drives\CURI - CUR\GIS\SOIL\Entire_US_soil"
@@ -77,7 +78,7 @@ for i in county_range:
 layers = map.listLayers()
 
 # %%
-#merge
+# NOT VALID IGNORE merge
 arcpy.management.Merge(layers,
                        "G:\Shared drives\CURI - CUR\GIS\SOIL\python_test\python_test.gdb\AL_merge")
 #find a way to put in length parameter for output field farmlndcl
